@@ -1,68 +1,40 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 항로시설본부 서버 감시 웹앱 ( KAC-Server-Management )
+###### 이 프로젝트는 한국공항공사 항로시설본부 인천항공교통시설단 항행통신부 내에서 진행된 프로젝트입니다.
+###### 개발한 프로젝트에 대한 NDA 조약은 없었습니다.
 
-## Available Scripts
+# 개발 목적
+회사 서버실에 늘어만 가는 서버들의 물리적인 수량과 각 서버의 자원을 효율적으로 관리하기 위해 개발하게 되었습니다. 
 
-In the project directory, you can run:
+# 프로젝트 소개
+백엔드 측에서 SNMP 프로토콜을 활용해 불러들여온 서버의 자원 수치를 각 서버별로 디스플레이합니다.   
+통상적인 **SNMP 프로토콜** 의 MIB를 활용하여 CPU, 메모리, HDD의 자원 사용량을 확인할 수 있으며   
+수집한 자원을 모니터링하다가, 임계치가 일정 시간 이상 유지될 경우 알람을 발생 시킵니다.
 
-### `yarn start`
+HP 서버의 경우 iLO(*Integrated Lights-Out*, 인텔이 만든 임베디드 관리 기술) 포트를 활용하여   
+메인보드의 온도감지 센서별 온도, 스토리지 에러 등 다양한 정보를 수집 할 수 있습니다.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 개발 사용 기술 안내
+#### 프론트엔드
+- React   
+    React는 Facebook에서 개발한 JavaScript 라이브러리입니다. React를 사용하면 재사용 가능한 UI 컴포넌트를 만들 수 있으며, 가상 DOM 기술을 활용하여 빠른 렌더링을 지원합니다. 따라서 복잡한 웹 어플리케이션 개발에 적합합니다.   
+- Chart.js   
+    Chart.js는 HTML5의 canvas 태그를 이용하여 차트를 그리는 JavaScript 라이브러리입니다. Chart.js를 사용하면 쉽고 간단하게 다양한 차트를 만들 수 있으며, 반응형 웹 디자인을 지원하기 때문에 모바일에서도 잘 동작합니다.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### 백엔드 *(해당 레포지토리에는 포함되어있지 않습니다.)*
+- Express   
+     Express는 Node.js의 웹 애플리케이션 프레임워크입니다. 미들웨어를 통해 기능을 확장할 수 있고, 라우팅 기능을 제공하여 요청과 응답을 쉽게 처리할 수 있습니다. 따라서 Node.js로 웹 어플리케이션을 개발할 때 Express를 사용하면 효율적이고 빠르게 개발할 수 있습니다.
+- net-snmp   
+    net-snmp는 SNMP(Simple Network Management Protocol) 프로토콜을 지원하는 라이브러리입니다. SNMP는 네트워크 장치의 정보를 수집하고 관리하는 프로토콜로, 서버나 네트워크 장비의 상태를 모니터링하고 관리하기 위해서 사용합니다. 따라서 서버 자원 모니터링 프로그램을 개발할 때 net-snmp를 사용하면 SNMP 프로토콜을 쉽게 다룰 수 있습니다.
 
-### `yarn test`
+### 개발자 : 신희상 (Ramon. K. Shin)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 개발 비하인드
+처음으로 개발을 통한 결과물을 만들어 낸 프로그램입니다.   
+SNMP라는 자주 쓰이기는 하지만 다소 생소한 프로토콜의 원리에 대해   
+공부하기 위해 네트워크 도서도 읽어보고 여러 자료를 참고하였습니다.
+또한, iLO 포트를 활용한 정보 수집 방법을 찾는 과정에서 HP 서버의 매뉴얼을 참고하였습니다.   
 
-### `yarn build`
+프론트엔드 부분에서는 React와 Chart.js를 활용하여 서버 자원 사용량을 시각화하였습니다.   
+백엔드 부분에서는 Express와 net-snmp 라이브러리를 사용하여 SNMP 프로토콜을 통해 서버 자원 정보를 수집하고, 알람 기능을 구현하였습니다.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+이 프로젝트를 통해 SNMP 프로토콜과 iLO 포트를 활용한 서버 모니터링에 대한 이해를 높일 수 있었고, React와 Express를 활용한 웹 애플리케이션 개발 경험을 쌓을 수 있었습니다.
